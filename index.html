@@ -206,9 +206,15 @@
   .stat.span-2 { grid-column: span 2; }
   .stat.span-1 { grid-column: span 1; }
   @media (max-width: 900px) {
-    .impact-grid { grid-template-columns: repeat(2, 1fr); }
+    .impact-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .stat { padding: 20px; }
     .stat.span-3, .stat.span-2, .stat.span-1 { grid-column: span 1; }
     .stat.feature { grid-column: span 2; }
+  }
+  @media (max-width: 560px) {
+    .impact-grid { grid-template-columns: 1fr; }
+    .stat.span-3, .stat.span-2, .stat.span-1, .stat.feature { grid-column: span 1; }
+    .stat .value { font-size: 40px; }
   }
   .stat .viz { margin-top: 18px; }
   .stat.feature {
@@ -291,18 +297,31 @@
     width: 14px; height: 6px; border-radius: 2px; display: block;
   }
 
-  /* ===== THREE LIVES ===== */
+  /* ===== THREE LIVES (light section to break the dark) ===== */
+  section.lives-section {
+    background: linear-gradient(180deg, #f6efe4 0%, #efe5d4 100%);
+    color: #2a2118;
+    margin-top: 40px;
+    border-top: 1px solid #e1d3bb;
+    border-bottom: 1px solid #e1d3bb;
+  }
+  section.lives-section .section-label { color: #8a7355; }
+  section.lives-section .section-label::before { background: #8a7355; }
+  section.lives-section .section-title { color: #2a2118; }
+  section.lives-section .section-lede { color: #5a4a36; }
   .lives { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   @media (max-width: 900px) { .lives { grid-template-columns: 1fr; } }
   .life {
-    background: var(--bg-elev);
-    border: 1px solid var(--line);
+    background: #fffaf1;
+    border: 1px solid #e6d6b8;
     border-radius: 20px;
     padding: 40px 32px;
-    transition: border-color .3s;
+    transition: transform .3s, box-shadow .3s;
     position: relative;
     overflow: hidden;
+    color: #2a2118;
   }
+  .life:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -20px rgba(80, 50, 20, 0.25); }
   .life::before {
     content: "";
     position: absolute; top: 0; left: 0; right: 0; height: 3px;
@@ -310,18 +329,18 @@
   .life[data-c="builder"]::before { background: var(--electric); }
   .life[data-c="dj"]::before { background: var(--magenta); }
   .life[data-c="burner"]::before { background: linear-gradient(90deg, var(--ember), var(--gold)); }
-  .life:hover { border-color: var(--text-faint); }
   .life .badge {
     font-family: 'JetBrains Mono', monospace; font-size: 10px;
     text-transform: uppercase; letter-spacing: 0.14em;
-    color: var(--text-faint); margin-bottom: 20px;
+    color: #8a7355; margin-bottom: 20px;
   }
   .life h4 {
     font-family: 'Fraunces', serif; font-weight: 400;
     font-size: 28px; line-height: 1.1; letter-spacing: -0.02em;
     margin-bottom: 16px;
+    color: #2a2118;
   }
-  .life p { color: var(--text-dim); font-size: 15px; line-height: 1.65; }
+  .life p { color: #5a4a36; font-size: 15px; line-height: 1.65; }
   .life .glyph { margin-bottom: 24px; }
   .life .glyph svg { width: 48px; height: 48px; }
 
@@ -381,14 +400,14 @@
 
 <header class="hero">
   <div class="container">
-    <div class="eyebrow"><span class="pulse"></span>Sole PM · Factuality infrastructure · Gemini &amp; AI Search</div>
-    <h1>Building AI<br>people <em>trust</em>.</h1>
-    <p class="tagline">Senior Product Leader at Google. Twenty years shipping consumer products at scale, now teaching large models to stop making things up.</p>
+    <div class="eyebrow"><span class="pulse"></span>A small site about a good friend</div>
+    <h1>Meet <em>Adam</em>.</h1>
+    <p class="tagline">Senior product mind at Google. Crate-digging DJ. Black Rock regular. The kind of friend who actually picks up the phone.</p>
     <div class="identity-row">
-      <div class="chip" data-c="g"><span class="swatch"></span>Google · AI Infrastructure</div>
-      <div class="chip" data-c="dj"><span class="swatch"></span>DJ Bigfoot · NYC</div>
-      <div class="chip" data-c="b"><span class="swatch"></span>Black Rock City regular</div>
-      <div class="chip" data-c="ny"><span class="swatch"></span>New York</div>
+      <div class="chip" data-c="g"><span class="swatch"></span>Builds at Google</div>
+      <div class="chip" data-c="dj"><span class="swatch"></span>Spins as Bigfoot</div>
+      <div class="chip" data-c="b"><span class="swatch"></span>Heads to the playa</div>
+      <div class="chip" data-c="ny"><span class="swatch"></span>Lives in NYC</div>
     </div>
   </div>
 </header>
@@ -397,13 +416,13 @@
   <div class="container">
     <div class="about reveal">
       <div>
-        <div class="section-label">Profile</div>
-        <h2 class="section-title">A product mind tuned for things that ought to be true.</h2>
+        <div class="section-label">A friend writes</div>
+        <h2 class="section-title">Adam is the kind of person it's worth knowing.</h2>
       </div>
       <div>
-        <p>Adam is the sole product manager on a <strong>30-engineer team at Google</strong> building <em>factuality agent infrastructure</em> for Gemini and AI Search — the systems that catch a model in the act of hallucinating, and ground its answers in something a human can actually verify.</p>
-        <p>Before Google, two decades of shipping consumer products to hundreds of millions of people: the <strong>Amazon Appstore</strong> across 200 countries, <strong>Marriott's Homes &amp; Villas</strong> platform, the <strong>myWalgreens</strong> wellness companion ($1B+ attributed revenue), <strong>U.S. Bank's</strong> mobile app, and the <strong>Albertsons</strong> ↔ Google grocery partnership.</p>
-        <p>Originally from Sydney. Lives in New York. Spins records as <strong>Bigfoot</strong>. Goes to the desert when the city gets loud.</p>
+        <p>By day he's the sole product manager on a <strong>30-engineer team at Google</strong>, building the systems that catch <em>Gemini and AI Search</em> in the act of hallucinating and ground them in things you can actually verify. Twenty years before that, he shipped consumer products that hundreds of millions of people have touched — <strong>Amazon Appstore</strong>, <strong>Marriott Homes &amp; Villas</strong>, <strong>myWalgreens</strong>, <strong>U.S. Bank</strong>, the <strong>Albertsons</strong> ↔ Google grocery partnership.</p>
+        <p>By night he's <strong>Bigfoot</strong>, two decades into crate-digging and live sets across New York. And once a year he disappears into the desert with the rest of the Burning Man family.</p>
+        <p>Originally from Sydney. Currently in New York. Endlessly curious about the parts of life that don't fit on a roadmap.</p>
       </div>
     </div>
   </div>
@@ -507,7 +526,7 @@
       <div class="copy">
         <h3>Ungrounded answers are now <em>half</em> what they were.</h3>
         <p>The dial on the right shows the percentage of Gemini &amp; AI Search responses that fail factuality grounding checks — the number Adam's team has been bending downward, response by response.</p>
-        <p style="color: var(--text-faint); font-size: 13px; margin-top: 22px; font-family: 'JetBrains Mono', monospace;">Metric: ungrounded-response rate · lower is better · Google internal</p>
+        <p style="color: var(--text-faint); font-size: 13px; margin-top: 22px; font-family: 'JetBrains Mono', monospace;">Metric: ungrounded-response rate · lower is better</p>
       </div>
       <div class="dial-wrap">
         <svg viewBox="0 0 240 240" id="dial">
@@ -578,7 +597,7 @@
   </div>
 </section>
 
-<section id="lives">
+<section id="lives" class="lives-section">
   <div class="container">
     <div class="section-label">Three lives, one person</div>
     <h2 class="section-title reveal">The whole human.</h2>
@@ -642,16 +661,15 @@
         <a href="https://www.instagram.com/lewko/" target="_blank" rel="noopener">Instagram (@lewko) →</a>
       </div>
       <div class="col">
-        <h5>Credentials</h5>
-        <a>PMP®</a>
-        <a>Certified Scrum Product Owner</a>
-        <a>Certified ScrumMaster</a>
-        <a>US Patent · Program Execution Recording (2013)</a>
+        <h5>Receipts</h5>
+        <span style="display:block;color:var(--text-dim);font-size:14px;padding:6px 0;">PMP · CSPO · ScrumMaster</span>
+        <span style="display:block;color:var(--text-dim);font-size:14px;padding:6px 0;">B.S., University of Technology, Sydney</span>
+        <span style="display:block;color:var(--text-dim);font-size:14px;padding:6px 0;">US Patent (2013) — program execution recording</span>
       </div>
     </div>
     <div class="micro">
-      <span>adam.makeacompany.ai · built by <a href="https://makeacompany.ai">Ross</a></span>
-      <span>Made with care, no LLM hallucinations</span>
+      <span>adam.makeacompany.ai · a small page by a friend</span>
+      <span>Made with care in NYC ↔ NYC</span>
     </div>
   </div>
 </footer>
@@ -693,25 +711,7 @@ const countObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.4 });
 document.querySelectorAll('.countup').forEach(el => countObs.observe(el));
 
-// ===== SVG bar growth =====
-const growObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const el = e.target;
-      const final = parseFloat(el.dataset.final);
-      el.style.transition = 'width 1.4s cubic-bezier(.2,.7,.2,1)';
-      requestAnimationFrame(() => {
-        el.setAttribute('width', final);
-      });
-      growObs.unobserve(el);
-    }
-  });
-}, { threshold: 0.3 });
-document.querySelectorAll('.grow-w').forEach(el => {
-  // SVG width attribute animation via setAttribute polled
-  growObs.observe(el);
-});
-// Smooth width animation for SVG rects (SVG attrs don't animate via CSS in all browsers)
+// ===== SVG attribute animation helper =====
 function animateAttr(el, attr, from, to, dur=1400) {
   const start = performance.now();
   function tick(now){
@@ -722,17 +722,17 @@ function animateAttr(el, attr, from, to, dur=1400) {
   }
   requestAnimationFrame(tick);
 }
-const growObs2 = new IntersectionObserver((entries)=>{
+const growObs = new IntersectionObserver((entries)=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
       const el = e.target;
       const final = parseFloat(el.dataset.final);
       animateAttr(el, 'width', 0, final, 1400);
-      growObs2.unobserve(el);
+      growObs.unobserve(el);
     }
   });
 },{threshold:0.3});
-document.querySelectorAll('.grow-w').forEach(el => growObs2.observe(el));
+document.querySelectorAll('.grow-w').forEach(el => growObs.observe(el));
 
 // ===== Factuality dial =====
 const dialObs = new IntersectionObserver((entries)=>{
