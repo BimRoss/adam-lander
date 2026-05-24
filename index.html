@@ -171,6 +171,8 @@
   .impact-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: min-content;
+    align-items: start;
     gap: 16px;
   }
   .stat {
@@ -206,15 +208,11 @@
   .stat.span-2 { grid-column: span 2; }
   .stat.span-1 { grid-column: span 1; }
   @media (max-width: 900px) {
-    .impact-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-    .stat { padding: 20px; }
-    .stat.span-3, .stat.span-2, .stat.span-1 { grid-column: span 1; }
-    .stat.feature { grid-column: span 2; }
-  }
-  @media (max-width: 560px) {
-    .impact-grid { grid-template-columns: 1fr; }
+    .impact-grid { grid-template-columns: 1fr; gap: 12px; }
+    .stat { padding: 22px 24px; }
     .stat.span-3, .stat.span-2, .stat.span-1, .stat.feature { grid-column: span 1; }
-    .stat .value { font-size: 40px; }
+    .stat .value { font-size: 42px; }
+    .stat .viz { margin-top: 12px; }
   }
   .stat .viz { margin-top: 18px; }
   .stat.feature {
