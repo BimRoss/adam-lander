@@ -3,805 +3,917 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Adam Lewkovitz — AI Product, Built for Trust</title>
-<meta name="description" content="Adam Lewkovitz — Senior AI Product Leader at Google. Factuality, grounding, and consumer products at scale. New York." />
-<meta property="og:title" content="Adam Lewkovitz — AI Product, Built for Trust" />
-<meta property="og:description" content="Senior AI Product Leader at Google. Factuality, grounding, consumer products at scale." />
+<title>Adam Lewkovitz — Senior AI Product Leader</title>
+<meta name="description" content="Adam Lewkovitz — Senior AI Product Leader. Building AI grounding & factuality at Google. 20+ years shipping at scale across Amazon, Marriott, Walgreens, and more. New York." />
+<meta property="og:title" content="Adam Lewkovitz — Senior AI Product Leader" />
+<meta property="og:description" content="Building the platform that grounds generative AI responses across Gemini and AI Search. 20+ years at scale. NYC." />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://adam.makeacompany.ai" />
+<meta property="og:url" content="https://adamlewkovitz.com" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0a0908;
-    --bg-elev: #14110d;
-    --surface: #1c1814;
-    --line: #2a241e;
-    --text: #f4ede4;
-    --text-dim: #a39788;
-    --text-faint: #6e6356;
-    --ember: #ff6b35;
-    --ember-soft: #ff8857;
-    --gold: #f7c548;
-    --electric: #4d9de0;
-    --signal: #5fb37e;
-    --magenta: #d65d9b;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', -apple-system, system-ui, sans-serif;
-    font-weight: 400;
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
-  }
-  ::selection { background: var(--ember); color: var(--bg); }
+/* ===== TOKENS ===== */
+:root {
+  --bg:          #FAFAF7;
+  --bg-dim:      #F3F3EE;
+  --surface:     #FFFFFF;
+  --text:        #111110;
+  --text-muted:  #696963;
+  --text-faint:  #A8A89E;
+  --accent:      #1B3A5C;
+  --accent-mid:  #2A5A8C;
+  --accent-light:#EBF0F6;
+  --line:        #E4E4DE;
+  --rule:        #C8C8C0;
+  --stat-bg:     #F7F7F3;
+  --tag-bg:      #EEEEE8;
+  --navy-bar:    #1B3A5C;
+}
 
-  /* Ambient playa-dust gradient */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 80% 50% at 10% 0%, rgba(255, 107, 53, 0.08), transparent 60%),
-      radial-gradient(ellipse 60% 40% at 90% 30%, rgba(77, 157, 224, 0.06), transparent 60%),
-      radial-gradient(ellipse 70% 50% at 50% 100%, rgba(247, 197, 72, 0.05), transparent 60%);
-    pointer-events: none;
-    z-index: 0;
-  }
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+::selection { background: var(--accent); color: #fff; }
 
-  .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
-  @media (max-width: 640px) { .container { padding: 0 20px; } }
+/* ===== LAYOUT ===== */
+.wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+@media (max-width: 640px) { .wrap { padding: 0 20px; } }
 
-  /* ===== NAV ===== */
-  nav.top {
-    position: fixed; top: 0; left: 0; right: 0;
-    backdrop-filter: blur(14px);
-    background: rgba(10, 9, 8, 0.6);
-    border-bottom: 1px solid var(--line);
-    z-index: 50;
-  }
-  nav.top .inner {
-    max-width: 1180px; margin: 0 auto; padding: 16px 32px;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  nav.top .mark {
-    font-family: 'Fraunces', serif; font-weight: 600; font-size: 18px;
-    letter-spacing: -0.01em;
-  }
-  nav.top .mark .dot { color: var(--ember); }
-  nav.top .links { display: flex; gap: 28px; font-size: 13px; color: var(--text-dim); }
-  nav.top .links a { color: inherit; text-decoration: none; transition: color .2s; }
-  nav.top .links a:hover { color: var(--text); }
-  @media (max-width: 640px) { nav.top .links { display: none; } nav.top .inner { padding: 14px 20px; } }
+/* ===== NAV ===== */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250,250,247,0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+nav .inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 14px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media (max-width: 640px) { nav .inner { padding: 12px 20px; } }
+.nav-name {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 17px;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+.nav-links {
+  display: flex;
+  gap: 24px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color .15s;
+}
+.nav-links a:hover { color: var(--accent); }
+@media (max-width: 580px) { .nav-links { display: none; } }
 
-  /* ===== HERO ===== */
-  .hero { padding: 180px 0 100px; position: relative; }
-  .hero .eyebrow {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-family: 'JetBrains Mono', monospace; font-size: 11px;
-    color: var(--text-dim); letter-spacing: 0.12em; text-transform: uppercase;
-    padding: 8px 14px; border: 1px solid var(--line); border-radius: 99px;
-    margin-bottom: 32px;
-  }
-  .hero .eyebrow .pulse {
-    width: 6px; height: 6px; border-radius: 50%; background: var(--signal);
-    box-shadow: 0 0 0 0 rgba(95, 179, 126, 0.7);
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(95, 179, 126, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(95, 179, 126, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(95, 179, 126, 0); }
-  }
-  .hero h1 {
-    font-family: 'Fraunces', serif;
-    font-weight: 400;
-    font-size: clamp(48px, 8vw, 104px);
-    line-height: 1.02;
-    letter-spacing: -0.035em;
-    margin-bottom: 28px;
-  }
-  .hero h1 em {
-    font-style: italic; font-weight: 300;
-    background: linear-gradient(120deg, var(--ember) 0%, var(--gold) 100%);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .hero .tagline {
-    font-size: clamp(18px, 2.2vw, 24px);
-    color: var(--text-dim);
-    max-width: 640px; line-height: 1.5; margin-bottom: 40px;
-    font-weight: 300;
-  }
-  .hero .identity-row { display: flex; flex-wrap: wrap; gap: 12px; }
-  .chip {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 10px 16px; border-radius: 99px;
-    background: var(--bg-elev); border: 1px solid var(--line);
-    font-size: 13px; color: var(--text);
-    transition: all .25s;
-  }
-  .chip:hover { border-color: var(--ember); transform: translateY(-1px); }
-  .chip .swatch { width: 8px; height: 8px; border-radius: 2px; }
-  .chip[data-c="g"] .swatch { background: var(--electric); }
-  .chip[data-c="dj"] .swatch { background: var(--magenta); }
-  .chip[data-c="b"] .swatch { background: var(--ember); }
-  .chip[data-c="ny"] .swatch { background: var(--text-dim); border-radius: 50%; }
+/* ===== HERO ===== */
+.hero {
+  padding: 96px 0 80px;
+  border-bottom: 1px solid var(--line);
+}
+.hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hero-eyebrow::before {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 1px;
+}
+.hero h1 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(52px, 8vw, 88px);
+  font-weight: 400;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+.hero-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+}
+.hero-summary {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--text-muted);
+  max-width: 640px;
+  margin-bottom: 36px;
+  font-weight: 400;
+}
+.hero-summary strong { color: var(--text); font-weight: 600; }
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: all .15s;
+  border: 1px solid transparent;
+}
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.btn-primary:hover { background: var(--accent-mid); border-color: var(--accent-mid); }
+.btn-outline {
+  background: transparent;
+  color: var(--text-muted);
+  border-color: var(--line);
+}
+.btn-outline:hover { color: var(--text); border-color: var(--rule); }
 
-  /* ===== SECTION SHELL ===== */
-  section { padding: 100px 0; position: relative; }
-  .section-label {
-    font-family: 'JetBrains Mono', monospace; font-size: 11px;
-    color: var(--text-faint); letter-spacing: 0.18em; text-transform: uppercase;
-    margin-bottom: 20px;
-    display: flex; align-items: center; gap: 14px;
-  }
-  .section-label::before {
-    content: ""; display: block; width: 32px; height: 1px; background: var(--text-faint);
-  }
-  .section-title {
-    font-family: 'Fraunces', serif; font-weight: 400;
-    font-size: clamp(32px, 4.5vw, 52px);
-    line-height: 1.05; letter-spacing: -0.025em;
-    margin-bottom: 28px; max-width: 820px;
-  }
-  .section-lede {
-    font-size: 18px; color: var(--text-dim); max-width: 680px;
-    margin-bottom: 60px; font-weight: 300;
-  }
+/* ===== SECTION STRUCTURE ===== */
+section {
+  padding: 72px 0;
+  border-bottom: 1px solid var(--line);
+}
+section:last-of-type { border-bottom: none; }
+.section-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-label::before {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 1px;
+}
+.section-title {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 40px;
+}
 
-  /* ===== ABOUT ===== */
-  .about {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
-    border-top: 1px solid var(--line);
-    padding-top: 80px;
-  }
-  @media (max-width: 800px) { .about { grid-template-columns: 1fr; gap: 32px; } }
-  .about p { font-size: 17px; line-height: 1.7; color: var(--text-dim); }
-  .about p + p { margin-top: 18px; }
-  .about strong { color: var(--text); font-weight: 500; }
-  .about em { color: var(--ember); font-style: normal; }
+/* ===== SUMMARY ===== */
+.summary-body {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 60px;
+  align-items: start;
+}
+@media (max-width: 720px) { .summary-body { grid-template-columns: 1fr; gap: 32px; } }
+.summary-text p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+.summary-text p:last-child { margin-bottom: 0; }
+.summary-text strong { color: var(--text); font-weight: 600; }
+.pov-card {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 6px;
+  padding: 28px 28px 24px;
+}
+.pov-card .pov-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 14px;
+}
+.pov-card blockquote {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.95);
+  font-weight: 400;
+}
 
-  /* ===== IMPACT GRID — uniform tiles, auto-fit ===== */
-  .impact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 14px;
-  }
-  .stat {
-    background: var(--bg-elev);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    min-height: 0;
-    transition: border-color .25s, transform .25s;
-  }
-  .stat:hover { border-color: var(--ember); transform: translateY(-2px); }
-  .stat .label {
-    font-family: 'JetBrains Mono', monospace; font-size: 10px;
-    color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.14em;
-    line-height: 1.3;
-  }
-  .stat .value {
-    font-family: 'Fraunces', serif; font-weight: 400;
-    font-size: 44px;
-    line-height: 1; letter-spacing: -0.03em;
-  }
-  .stat .value .unit {
-    font-family: 'Inter', sans-serif; font-weight: 500;
-    font-size: 0.4em; color: var(--text-dim); margin-left: 2px;
-    letter-spacing: 0;
-  }
-  .stat .caption {
-    font-size: 13px; color: var(--text-dim); line-height: 1.5;
-    margin-top: auto;
-  }
-  @media (max-width: 560px) {
-    .impact-grid { grid-template-columns: 1fr; gap: 10px; }
-    .stat { padding: 20px; }
-    .stat .value { font-size: 38px; }
-  }
+/* ===== EXPERIENCE ===== */
+.experience-list { display: flex; flex-direction: column; gap: 0; }
+.exp-item {
+  padding: 36px 0;
+  border-bottom: 1px solid var(--line);
+}
+.exp-item:first-child { padding-top: 0; }
+.exp-item:last-child { border-bottom: none; padding-bottom: 0; }
+.exp-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+@media (max-width: 580px) { .exp-header { grid-template-columns: 1fr; } }
+.exp-company {
+  font-family: 'Inter', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.exp-division {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: 6px;
+}
+.exp-dates {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--text-faint);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+.exp-role {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+  margin-bottom: 16px;
+}
+.exp-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.exp-bullets li {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-muted);
+  padding-left: 16px;
+  position: relative;
+}
+.exp-bullets li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 11px;
+  top: 3px;
+}
+.exp-bullets strong { color: var(--text); font-weight: 600; }
 
-  /* ===== FACTUALITY DIAL ===== */
-  .factuality {
-    background: var(--bg-elev);
-    border: 1px solid var(--line);
-    border-radius: 24px;
-    padding: 60px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-  }
-  @media (max-width: 800px) { .factuality { grid-template-columns: 1fr; padding: 36px; gap: 40px; } }
-  .factuality .copy h3 {
-    font-family: 'Fraunces', serif; font-weight: 400;
-    font-size: clamp(28px, 3.5vw, 40px); line-height: 1.1;
-    letter-spacing: -0.02em; margin-bottom: 20px;
-  }
-  .factuality .copy h3 em {
-    font-style: italic;
-    color: var(--ember);
-  }
-  .factuality .copy p { color: var(--text-dim); font-size: 16px; line-height: 1.65; }
-  .factuality .copy p + p { margin-top: 14px; }
-  .factuality .dial-wrap {
-    display: flex; flex-direction: column; align-items: center; gap: 20px;
-  }
-  .factuality svg { width: 100%; max-width: 320px; height: auto; }
-  .factuality .legend {
-    display: flex; gap: 24px; font-size: 12px; color: var(--text-dim);
-    font-family: 'JetBrains Mono', monospace;
-  }
-  .factuality .legend span { display: flex; align-items: center; gap: 8px; }
-  .factuality .legend i {
-    width: 10px; height: 10px; border-radius: 2px; display: block;
-  }
+/* ===== IMPACT STATS ===== */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  margin-top: 40px;
+}
+.stat-card {
+  background: var(--stat-bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 24px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color .15s;
+}
+.stat-card:hover { border-color: var(--accent); }
+.stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.stat-value {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  color: var(--text);
+}
+.stat-unit {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-left: 2px;
+}
+.stat-caption {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-faint);
+  margin-top: 4px;
+}
 
-  /* ===== TIMELINE ===== */
-  .timeline-wrap {
-    background: var(--bg-elev);
-    border: 1px solid var(--line);
-    border-radius: 24px;
-    padding: 48px;
-    overflow-x: auto;
-  }
-  @media (max-width: 800px) { .timeline-wrap { padding: 24px; } }
-  .timeline-chart {
-    min-width: 800px;
-    position: relative;
-  }
-  .timeline-svg { width: 100%; height: 360px; display: block; }
-  .timeline-svg .role-bar { cursor: pointer; transition: opacity .2s; }
-  .timeline-svg .role-bar:hover { opacity: 1 !important; }
-  .timeline-svg .role-label {
-    font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500;
-    fill: var(--text); pointer-events: none;
-  }
-  .timeline-svg .role-sub {
-    font-family: 'JetBrains Mono', monospace; font-size: 9px;
-    fill: var(--text-faint); pointer-events: none;
-  }
-  .timeline-svg .axis { fill: var(--text-faint); font-family: 'JetBrains Mono', monospace; font-size: 10px; }
-  .timeline-svg .axis-line { stroke: var(--line); stroke-width: 1; }
-  .timeline-svg .gridline { stroke: var(--line); stroke-dasharray: 2 4; }
-  .timeline-legend {
-    display: flex; gap: 24px; flex-wrap: wrap; margin-top: 24px;
-    font-size: 12px; color: var(--text-dim);
-    font-family: 'JetBrains Mono', monospace;
-  }
-  .timeline-legend span { display: flex; align-items: center; gap: 8px; }
-  .timeline-legend i {
-    width: 14px; height: 6px; border-radius: 2px; display: block;
-  }
+/* ===== SKILLS ===== */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+@media (max-width: 640px) { .skills-grid { grid-template-columns: 1fr; } }
+.skill-group {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 24px;
+}
+.skill-group-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.skill-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: var(--tag-bg);
+  padding: 4px 9px;
+  border-radius: 3px;
+  letter-spacing: 0.01em;
+}
 
-  /* ===== THREE LIVES (light section to break the dark) ===== */
-  section.lives-section {
-    background: linear-gradient(180deg, #f6efe4 0%, #efe5d4 100%);
-    color: #2a2118;
-    margin-top: 40px;
-    border-top: 1px solid #e1d3bb;
-    border-bottom: 1px solid #e1d3bb;
-  }
-  section.lives-section .section-label { color: #8a7355; }
-  section.lives-section .section-label::before { background: #8a7355; }
-  section.lives-section .section-title { color: #2a2118; }
-  section.lives-section .section-lede { color: #5a4a36; }
-  .lives { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  @media (max-width: 900px) { .lives { grid-template-columns: 1fr; } }
-  .life {
-    background: #fffaf1;
-    border: 1px solid #e6d6b8;
-    border-radius: 20px;
-    padding: 40px 32px;
-    transition: transform .3s, box-shadow .3s;
-    position: relative;
-    overflow: hidden;
-    color: #2a2118;
-  }
-  .life:hover { transform: translateY(-3px); box-shadow: 0 18px 40px -20px rgba(80, 50, 20, 0.25); }
-  .life::before {
-    content: "";
-    position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  }
-  .life[data-c="builder"]::before { background: var(--electric); }
-  .life[data-c="dj"]::before { background: var(--magenta); }
-  .life[data-c="burner"]::before { background: linear-gradient(90deg, var(--ember), var(--gold)); }
-  .life .badge {
-    font-family: 'JetBrains Mono', monospace; font-size: 10px;
-    text-transform: uppercase; letter-spacing: 0.14em;
-    color: #8a7355; margin-bottom: 20px;
-  }
-  .life h4 {
-    font-family: 'Fraunces', serif; font-weight: 400;
-    font-size: 28px; line-height: 1.1; letter-spacing: -0.02em;
-    margin-bottom: 16px;
-    color: #2a2118;
-  }
-  .life p { color: #5a4a36; font-size: 15px; line-height: 1.65; }
-  .life .glyph { margin-bottom: 24px; }
-  .life .glyph svg { width: 48px; height: 48px; }
+/* ===== EDUCATION & PATENT ===== */
+.edu-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+@media (max-width: 640px) { .edu-grid { grid-template-columns: 1fr; gap: 32px; } }
+.edu-list { display: flex; flex-direction: column; gap: 20px; }
+.edu-item {}
+.edu-school {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+.edu-degree {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.edu-years {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--text-faint);
+  margin-top: 2px;
+}
+.cert-list { display: flex; flex-direction: column; gap: 8px; }
+.cert-item {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 6px 0;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cert-item::before {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+.cert-item:last-child { border-bottom: none; }
+.patent-card {
+  margin-top: 32px;
+  padding: 20px 24px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  background: var(--surface);
+}
+.patent-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.patent-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.patent-meta {
+  font-size: 12px;
+  color: var(--text-faint);
+  font-family: 'JetBrains Mono', monospace;
+}
 
-  /* ===== FOOTER ===== */
-  footer {
-    border-top: 1px solid var(--line);
-    padding: 60px 0 80px;
-    margin-top: 60px;
-  }
-  footer .grid {
-    display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px;
-    align-items: start;
-  }
-  @media (max-width: 700px) { footer .grid { grid-template-columns: 1fr; gap: 32px; } }
-  footer .sig {
-    font-family: 'Fraunces', serif; font-size: 22px; line-height: 1.3;
-    color: var(--text); font-weight: 400;
-  }
-  footer .sig .ember { color: var(--ember); }
-  footer .col h5 {
-    font-family: 'JetBrains Mono', monospace; font-size: 10px;
-    text-transform: uppercase; letter-spacing: 0.16em;
-    color: var(--text-faint); margin-bottom: 16px; font-weight: 500;
-  }
-  footer .col a {
-    display: block; color: var(--text-dim); text-decoration: none;
-    font-size: 14px; padding: 6px 0; transition: color .2s;
-  }
-  footer .col a:hover { color: var(--ember); }
-  footer .micro {
-    margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--line);
-    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
-    font-family: 'JetBrains Mono', monospace; font-size: 11px;
-    color: var(--text-faint);
-  }
-  footer .micro a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+/* ===== FOOTER ===== */
+footer {
+  background: var(--text);
+  color: rgba(255,255,255,0.75);
+  padding: 60px 0;
+}
+footer .inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+@media (max-width: 640px) {
+  footer .inner { grid-template-columns: 1fr; gap: 28px; padding: 0 20px; }
+}
+.footer-name {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 20px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.footer-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 16px;
+}
+.footer-tagline {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.5);
+}
+.footer-col h5 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 14px;
+}
+.footer-col a {
+  display: block;
+  color: rgba(255,255,255,0.55);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 5px 0;
+  transition: color .15s;
+}
+.footer-col a:hover { color: #fff; }
+.footer-bottom {
+  max-width: 900px;
+  margin: 40px auto 0;
+  padding: 20px 40px 0;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: rgba(255,255,255,0.2);
+}
+@media (max-width: 640px) { .footer-bottom { padding: 20px 20px 0; } }
 
-  /* ===== ANIMATION ===== */
-  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .9s, transform .9s; }
-  .reveal.in { opacity: 1; transform: none; }
+/* ===== REVEAL ANIMATIONS ===== */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ===== PRINT ===== */
+@media print {
+  nav, .cta-row, footer { display: none !important; }
+  body { background: #fff; color: #000; font-size: 12px; }
+  .hero { padding: 40px 0 32px; }
+  section { padding: 28px 0; }
+  .wrap { padding: 0; }
+  .hero h1 { font-size: 40px; }
+}
 </style>
 </head>
 <body>
 
-<nav class="top">
+<!-- ===== NAV ===== -->
+<nav>
   <div class="inner">
-    <div class="mark">Adam Lewkovitz<span class="dot">.</span></div>
-    <div class="links">
-      <a href="#work">Work</a>
+    <a class="nav-name" href="#">Adam Lewkovitz</a>
+    <div class="nav-links">
+      <a href="#summary">Summary</a>
+      <a href="#experience">Experience</a>
       <a href="#impact">Impact</a>
-      <a href="#arc">Arc</a>
-      <a href="#lives">Lives</a>
+      <a href="#skills">Skills</a>
       <a href="mailto:adam@adamlewkovitz.com">Contact</a>
     </div>
   </div>
 </nav>
 
+<!-- ===== HERO ===== -->
 <header class="hero">
-  <div class="container">
-    <div class="eyebrow"><span class="pulse"></span>A small site about a good friend</div>
-    <h1>Meet <em>Adam</em>.</h1>
-    <p class="tagline">Senior product mind at Google. Crate-digging DJ. Black Rock regular. The kind of friend who actually picks up the phone.</p>
-    <div class="identity-row">
-      <div class="chip" data-c="g"><span class="swatch"></span>Builds at Google</div>
-      <div class="chip" data-c="dj"><span class="swatch"></span>Spins as Bigfoot</div>
-      <div class="chip" data-c="b"><span class="swatch"></span>Heads to the playa</div>
-      <div class="chip" data-c="ny"><span class="swatch"></span>Lives in NYC</div>
+  <div class="wrap">
+    <div class="hero-eyebrow">Senior AI Product Leader · New York</div>
+    <h1>Adam <em>Lewkovitz</em></h1>
+    <div class="hero-title">Senior AI Product Leader</div>
+    <p class="hero-summary">
+      Building the Google platform that grounds and evaluates the factuality of generative AI responses across <strong>Gemini and AI Search</strong>. 20+ years shipping at scale across Amazon, Marriott, Walgreens, Albertsons, and U.S. Bank. <strong>Looking for senior IC leadership at AI-native companies where AI is the product.</strong>
+    </p>
+    <div class="cta-row">
+      <a href="https://www.linkedin.com/in/adamlewkovitz/" class="btn btn-primary" target="_blank" rel="noopener">LinkedIn →</a>
+      <a href="mailto:adam@adamlewkovitz.com" class="btn btn-outline">adam@adamlewkovitz.com</a>
     </div>
   </div>
 </header>
 
-<section id="work">
-  <div class="container">
-    <div class="about reveal">
-      <div>
-        <div class="section-label">A friend writes</div>
-        <h2 class="section-title">Adam is the kind of person it's worth knowing.</h2>
+<!-- ===== SUMMARY ===== -->
+<section id="summary">
+  <div class="wrap">
+    <div class="section-label">Summary</div>
+    <div class="summary-body reveal">
+      <div class="summary-text">
+        <p>
+          Sole PM on a <strong>30-engineer team at Google</strong> building the factuality agent infrastructure that keeps Gemini and AI Search grounded in verifiable evidence. Cut ungrounded responses by 50%. Reduced platform latency from 120 seconds to under 20. Twenty-plus teams across Google — including Gemini, Search, Workspace, and Research — depend on it.
+        </p>
+        <p>
+          Before Google: <strong>Publicis Sapient</strong>, leading product for Marriott Homes &amp; Villas (140K+ properties, Gartner case study), the myWalgreens AI Wellness Companion ($1B+ revenue, 105M members), the Albertsons ↔ Google strategic partnership, and a top-ranked U.S. Bank mobile app.
+        </p>
+        <p>
+          Before that: <strong>KPMG</strong> (founded the US Digital &amp; Mobile practice, scaled 2 → ~200 consultants), <strong>Amazon</strong> (Appstore global launch, US patent), <strong>Merrill Lynch</strong> (first Android app), and earlier roles across financial services and consulting in New York and Sydney.
+        </p>
+        <p>
+          Next: senior IC leadership at an AI-native company where <strong>AI is the product</strong>, not the feature.
+        </p>
       </div>
       <div>
-        <p>By day he's the sole product manager on a <strong>30-engineer team at Google</strong>, building the systems that catch <em>Gemini and AI Search</em> in the act of hallucinating and ground them in things you can actually verify. Twenty years before that, he shipped consumer products that hundreds of millions of people have touched — <strong>Amazon Appstore</strong>, <strong>Marriott Homes &amp; Villas</strong>, <strong>myWalgreens</strong>, <strong>U.S. Bank</strong>, the <strong>Albertsons</strong> ↔ Google grocery partnership.</p>
-        <p>By night he's <strong>Bigfoot</strong>, two decades into crate-digging and live sets across New York. And once a year he disappears into the desert with the rest of the Burning Man family.</p>
-        <p>Originally from Sydney. Currently in New York. Endlessly curious about the parts of life that don't fit on a roadmap.</p>
+        <div class="pov-card">
+          <div class="pov-label">Point of view</div>
+          <blockquote>"The cost of implementation is collapsing. Taste, judgment, and customer understanding are the new bottleneck."</blockquote>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="impact">
-  <div class="container">
-    <div class="section-label">By the numbers</div>
+<!-- ===== EXPERIENCE ===== -->
+<section id="experience">
+  <div class="wrap">
+    <div class="section-label">Experience</div>
+    <div class="experience-list">
+
+      <div class="exp-item reveal">
+        <div class="exp-header">
+          <div>
+            <span class="exp-company">Google</span>
+            <span class="exp-division">· Knowledge &amp; Information</span>
+          </div>
+          <div class="exp-dates">Jan 2022 – Present</div>
+        </div>
+        <div class="exp-role">Senior Product Manager — AI Grounding &amp; Factuality · New York</div>
+        <ul class="exp-bullets">
+          <li>Sole PM on a <strong>30-engineer team</strong> building Google's factuality agent infrastructure — the platform that measures and evaluates the factuality of generative AI responses across Gemini and AI Search. Co-built with Research, who provide the models powering the agent's reasoning.</li>
+          <li>Cut ungrounded AI responses <strong>50% (30% → 15%)</strong>. Brought platform response time from 120 seconds down to under 20. The factuality auto-rater is also used as a reward signal in post-training, contributing to a <strong>16% reduction</strong> in factuality errors Search-wide.</li>
+          <li>Extended the platform to support <strong>multimodal content</strong> — now also grounds and fact-checks images, videos, tables, and structured data inside AI-generated responses.</li>
+          <li>Won executive investment and additional headcount to scale; <strong>20+ teams across Google</strong> now depend on it — including Gemini, Search, Workspace, and Research.</li>
+          <li>Built <strong>FreshServe</strong>, the real-time data platform now standard across Sports, News, Weather, Finance, and Elections — 70× faster, 90% fewer on-call alerts; earned a spot bonus for cross-Search reliability impact.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-header">
+          <div><span class="exp-company">Publicis Sapient</span></div>
+          <div class="exp-dates">Jun 2018 – Jan 2022</div>
+        </div>
+        <div class="exp-role">Associate Director, Product Management · New York</div>
+        <ul class="exp-bullets">
+          <li><strong>Marriott (HVMB + Personalized Offers):</strong> Owned full demand-side product for Homes &amp; Villas by Marriott Bonvoy — scaled pilot to 140K+ premium properties serving Marriott's 147M+ loyalty members; Gartner case study. AI personalization and offers platform across web, mobile, call center, and on-property — <strong>+288% traffic, +7% conversion during COVID</strong>.</li>
+          <li><strong>Walgreens — myWalgreens AI Wellness Companion:</strong> Transformed loyalty from transactional points into an AI-powered wellness companion — <strong>$1B+ attributed revenue, 105M+ active members</strong> (1 in 3 Americans), 5.1M daily transactions, +100pt retail sales, +20 NPS.</li>
+          <li><strong>Albertsons (Google partnership + CDP):</strong> Digital transformation across 2,250+ stores, 20+ banners. Led the multi-year Google strategic partnership (conversational commerce on Assistant, Search, Maps using Google Cloud Vision AI and Recommendations AI); directed the ML-powered Customer Data Platform enabling self-serve segmentation.</li>
+          <li><strong>U.S. Bank:</strong> Launched the top-rated iOS/Android mobile banking app in under 8 months — <strong>5-star rated, ranked #2 nationally</strong>. Established the delivery playbook the bank still uses.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-header">
+          <div><span class="exp-company">KPMG US</span></div>
+          <div class="exp-dates">2013 – 2016</div>
+        </div>
+        <div class="exp-role">Manager, Digital &amp; Mobile Practice · New York</div>
+        <ul class="exp-bullets">
+          <li>Founded the KPMG US Digital &amp; Mobile practice. Scaled the team from <strong>2 to ~200 consultants</strong> in under three years.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-header">
+          <div><span class="exp-company">Amazon</span></div>
+          <div class="exp-dates">2012 – 2013</div>
+        </div>
+        <div class="exp-role">Senior Product Manager, Appstore · New York</div>
+        <ul class="exp-bullets">
+          <li>Global launch of Amazon Appstore for Android and Kindle Fire — <strong>100+ countries, 2× developer acquisition</strong>. Holds US patent on program-execution recording (2013).</li>
+        </ul>
+      </div>
+
+      <div class="exp-item reveal">
+        <div class="exp-header">
+          <div><span class="exp-company">Merrill Lynch</span></div>
+          <div class="exp-dates">2011 – 2012</div>
+        </div>
+        <div class="exp-role">Senior Product Manager, Mobile · New York</div>
+        <ul class="exp-bullets">
+          <li>Built Merrill Lynch's <strong>first Android app</strong>.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== IMPACT ===== -->
+<section id="impact" style="background: var(--bg-dim);">
+  <div class="wrap">
+    <div class="section-label">Impact</div>
     <h2 class="section-title reveal">Twenty years of shipping, measured.</h2>
-    <p class="section-lede reveal">A career spent moving metrics that matter — model factuality, customer growth, revenue. Selected highlights.</p>
-
-    <div class="impact-grid reveal">
-      <div class="stat">
-        <div class="label">Gemini factuality</div>
-        <div class="value"><span class="countup" data-from="0" data-to="50">50</span><span class="unit">% drop</span></div>
-        <div class="caption">Ungrounded AI responses, on the platform Adam's team owns at Google.</div>
+    <div class="stats-grid">
+      <div class="stat-card reveal">
+        <div class="stat-label">Gemini factuality</div>
+        <div class="stat-value"><span class="countup" data-to="50">50</span><span class="stat-unit">% drop</span></div>
+        <div class="stat-caption">Ungrounded AI responses, on the Google factuality platform.</div>
       </div>
-
-      <div class="stat">
-        <div class="label">Platform latency</div>
-        <div class="value"><span class="countup" data-from="0" data-to="6">6</span><span class="unit">× faster</span></div>
-        <div class="caption">Factuality eval pipeline went from 120s to under 20s.</div>
+      <div class="stat-card reveal">
+        <div class="stat-label">Platform latency</div>
+        <div class="stat-value"><span class="countup" data-to="6">6</span><span class="stat-unit">× faster</span></div>
+        <div class="stat-caption">Factuality eval pipeline: 120 seconds to under 20.</div>
       </div>
-
-      <div class="stat">
-        <div class="label">myWalgreens revenue</div>
-        <div class="value">$<span class="countup" data-from="0" data-to="1">1</span><span class="unit">B+</span></div>
-        <div class="caption">Attributed to the AI wellness companion Adam led.</div>
+      <div class="stat-card reveal">
+        <div class="stat-label">myWalgreens revenue</div>
+        <div class="stat-value">$<span class="countup" data-to="1">1</span><span class="stat-unit">B+</span></div>
+        <div class="stat-caption">Attributed to the AI wellness companion.</div>
       </div>
-
-      <div class="stat">
-        <div class="label">Active users</div>
-        <div class="value"><span class="countup" data-from="0" data-to="105">105</span><span class="unit">M</span></div>
-        <div class="caption">myWalgreens loyalty members served.</div>
+      <div class="stat-card reveal">
+        <div class="stat-label">Loyalty members</div>
+        <div class="stat-value"><span class="countup" data-to="105">105</span><span class="stat-unit">M</span></div>
+        <div class="stat-caption">myWalgreens active members — 1 in 3 Americans.</div>
       </div>
-
-      <div class="stat">
-        <div class="label">Loyalty reach</div>
-        <div class="value"><span class="countup" data-from="0" data-to="147">147</span><span class="unit">M</span></div>
-        <div class="caption">Marriott Bonvoy members on Homes &amp; Villas.</div>
+      <div class="stat-card reveal">
+        <div class="stat-label">Marriott Bonvoy reach</div>
+        <div class="stat-value"><span class="countup" data-to="147">147</span><span class="stat-unit">M</span></div>
+        <div class="stat-caption">Loyalty members on Homes &amp; Villas.</div>
       </div>
-
-      <div class="stat">
-        <div class="label">Properties scaled</div>
-        <div class="value"><span class="countup" data-from="0" data-to="140">140</span><span class="unit">K+</span></div>
-        <div class="caption">Listings on Marriott Homes &amp; Villas at launch.</div>
+      <div class="stat-card reveal">
+        <div class="stat-label">Albertsons stores</div>
+        <div class="stat-value"><span class="countup" data-to="2250">2,250</span><span class="stat-unit">+</span></div>
+        <div class="stat-caption">Stores transformed via Google partnership + CDP.</div>
       </div>
-
-      <div class="stat">
-        <div class="label">Albertsons footprint</div>
-        <div class="value"><span class="countup" data-from="0" data-to="2250">2,250</span><span class="unit">+ stores</span></div>
-        <div class="caption">Digital transformation, plus the Google partnership.</div>
+      <div class="stat-card reveal">
+        <div class="stat-label">Google teams dependent</div>
+        <div class="stat-value"><span class="countup" data-to="20">20</span><span class="stat-unit">+</span></div>
+        <div class="stat-caption">Teams across Gemini, Search, Workspace, and Research.</div>
       </div>
-
-      <div class="stat">
-        <div class="label">Amazon Appstore</div>
-        <div class="value"><span class="countup" data-from="0" data-to="200">200</span><span class="unit"> countries</span></div>
-        <div class="caption">Scaled the mobile marketplace for Kindle Fire globally.</div>
-      </div>
-
-      <div class="stat">
-        <div class="label">U.S. Bank mobile</div>
-        <div class="value">#<span class="countup" data-from="0" data-to="2">2</span><span class="unit"> nationally</span></div>
-        <div class="caption">Launched a 5-star rated app in under 8 months.</div>
+      <div class="stat-card reveal">
+        <div class="stat-label">U.S. Bank app ranking</div>
+        <div class="stat-value">#<span class="countup" data-to="2">2</span></div>
+        <div class="stat-caption">Nationally ranked mobile banking app, 5 stars, shipped in 8 months.</div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="factuality">
-  <div class="container reveal">
-    <div class="section-label">Signature work</div>
-    <h2 class="section-title">The dial he is turning.</h2>
-    <p class="section-lede">Across Gemini and AI Search, Adam's team measures and reduces the share of model responses that aren't grounded in verifiable evidence. Here is the number that defines the role.</p>
-
-    <div class="factuality">
-      <div class="copy">
-        <h3>Ungrounded answers are now <em>half</em> what they were.</h3>
-        <p>The dial on the right shows the percentage of Gemini &amp; AI Search responses that fail factuality grounding checks — the number Adam's team has been bending downward, response by response.</p>
-        <p style="color: var(--text-faint); font-size: 13px; margin-top: 22px; font-family: 'JetBrains Mono', monospace;">Metric: ungrounded-response rate · lower is better</p>
+<!-- ===== SKILLS ===== -->
+<section id="skills">
+  <div class="wrap">
+    <div class="section-label">Skills</div>
+    <div class="skills-grid reveal">
+      <div class="skill-group">
+        <div class="skill-group-label">AI / ML Product</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Grounding &amp; factuality</span>
+          <span class="skill-tag">LLM evals &amp; measurement</span>
+          <span class="skill-tag">Agentic system design</span>
+          <span class="skill-tag">Tool-use &amp; retrieval</span>
+          <span class="skill-tag">Prompt engineering</span>
+          <span class="skill-tag">Latency–quality tradeoffs</span>
+          <span class="skill-tag">Multimodal product</span>
+          <span class="skill-tag">AI safety &amp; responsible AI</span>
+          <span class="skill-tag">Post-training signals</span>
+        </div>
       </div>
-      <div class="dial-wrap">
-        <svg viewBox="0 0 240 240" id="dial">
-          <defs>
-            <linearGradient id="dialGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#ff6b35"/>
-              <stop offset="100%" stop-color="#f7c548"/>
-            </linearGradient>
-          </defs>
-          <!-- track -->
-          <circle cx="120" cy="120" r="92" fill="none" stroke="#2a241e" stroke-width="18" />
-          <!-- before (30%) ghost arc -->
-          <circle cx="120" cy="120" r="92" fill="none" stroke="#6e6356" stroke-width="18"
-            stroke-dasharray="173.4 578"
-            stroke-dashoffset="0"
-            transform="rotate(-90 120 120)"
-            opacity="0.5" />
-          <!-- after (15%) animated arc -->
-          <circle cx="120" cy="120" r="92" fill="none" stroke="url(#dialGrad)" stroke-width="18"
-            stroke-linecap="round"
-            stroke-dasharray="0 578"
-            stroke-dashoffset="0"
-            transform="rotate(-90 120 120)"
-            id="dial-arc" />
-          <text x="120" y="115" text-anchor="middle" fill="#f4ede4"
-            font-family="Fraunces" font-size="56" font-weight="400" letter-spacing="-2">
-            <tspan id="dial-num">15</tspan><tspan font-size="28" dy="-12" fill="#a39788">%</tspan>
-          </text>
-          <text x="120" y="148" text-anchor="middle" fill="#a39788"
-            font-family="JetBrains Mono" font-size="10" letter-spacing="2">UNGROUNDED</text>
-          <text x="120" y="166" text-anchor="middle" fill="#6e6356"
-            font-family="JetBrains Mono" font-size="9" letter-spacing="1">DOWN FROM 30%</text>
-        </svg>
-        <div class="legend">
-          <span><i style="background:#6e6356;opacity:.6"></i>Before</span>
-          <span><i style="background:linear-gradient(90deg,#ff6b35,#f7c548)"></i>After</span>
+      <div class="skill-group">
+        <div class="skill-group-label">Platform &amp; Infrastructure</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Platform product</span>
+          <span class="skill-tag">Inference cost optimization</span>
+          <span class="skill-tag">Real-time data infrastructure</span>
+          <span class="skill-tag">API / SDK design</span>
+          <span class="skill-tag">Developer experience</span>
+          <span class="skill-tag">Knowledge graphs</span>
+          <span class="skill-tag">Semantic search</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">PM Craft &amp; Leadership</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Cross-functional leadership</span>
+          <span class="skill-tag">Exec alignment on AI tradeoffs</span>
+          <span class="skill-tag">Research → production</span>
+          <span class="skill-tag">North-star metric design</span>
+          <span class="skill-tag">0→1 and 1→N</span>
+          <span class="skill-tag">Prototype to scale</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-label">Tools &amp; Domains</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Claude</span>
+          <span class="skill-tag">Gemini</span>
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Commerce &amp; loyalty</span>
+          <span class="skill-tag">Financial services</span>
+          <span class="skill-tag">Healthcare</span>
+          <span class="skill-tag">Search &amp; discovery</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="arc">
-  <div class="container">
-    <div class="section-label">Career arc</div>
-    <h2 class="section-title reveal">From Sydney IT student to Gemini factuality lead.</h2>
-    <p class="section-lede reveal">Two decades, four sectors, one through-line: making products that earn their users' trust.</p>
-
-    <div class="timeline-wrap reveal">
-      <div class="timeline-chart">
-        <svg class="timeline-svg" viewBox="0 0 1100 360" preserveAspectRatio="xMinYMid meet" id="timeline">
-          <!-- gridlines -->
-          <g class="gridlines"></g>
-          <!-- bars (rendered by JS) -->
-          <g class="bars"></g>
-          <!-- axis -->
-          <g class="axis-group"></g>
-        </svg>
-      </div>
-      <div class="timeline-legend">
-        <span><i style="background:#4d9de0"></i>Big Tech</span>
-        <span><i style="background:#5fb37e"></i>Consulting &amp; Strategy</span>
-        <span><i style="background:#d65d9b"></i>Financial Services</span>
-        <span><i style="background:#f7c548"></i>Retail / Hospitality (via Sapient)</span>
-        <span><i style="background:#ff6b35"></i>AI Infrastructure</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="lives" class="lives-section">
-  <div class="container">
-    <div class="section-label">Three lives, one person</div>
-    <h2 class="section-title reveal">The whole human.</h2>
-    <p class="section-lede reveal">Adam's complexity is the point. The same instinct shows up in every column.</p>
-
-    <div class="lives">
-      <div class="life reveal" data-c="builder">
-        <div class="glyph">
-          <svg viewBox="0 0 48 48" fill="none" stroke="#4d9de0" stroke-width="1.5">
-            <rect x="6" y="6" width="36" height="36" rx="6"/>
-            <path d="M14 24h8l4-8 4 16 4-8h6"/>
-          </svg>
-        </div>
-        <div class="badge">The Builder</div>
-        <h4>AI products that don't lie.</h4>
-        <p>Sole PM on Google's factuality agent infrastructure for Gemini and AI Search. Twenty years before that — Amazon, Marriott, Walgreens, Albertsons, U.S. Bank — shipping things that actually launch.</p>
-      </div>
-
-      <div class="life reveal" data-c="dj">
-        <div class="glyph">
-          <svg viewBox="0 0 48 48" fill="none" stroke="#d65d9b" stroke-width="1.5">
-            <circle cx="24" cy="24" r="18"/>
-            <circle cx="24" cy="24" r="4" fill="#d65d9b"/>
-            <circle cx="24" cy="24" r="11"/>
-          </svg>
-        </div>
-        <div class="badge">The DJ</div>
-        <h4>Bigfoot, on the decks.</h4>
-        <p>Two decades of crate digging and live sets across New York. The same product instinct, but compressed into 120 BPM and a room you can feel breathing.</p>
-      </div>
-
-      <div class="life reveal" data-c="burner">
-        <div class="glyph">
-          <svg viewBox="0 0 48 48" fill="none" stroke="#ff6b35" stroke-width="1.5">
-            <path d="M24 6 C 18 16 14 22 14 30 a 10 10 0 0 0 20 0 C 34 22 30 16 24 6 Z"/>
-            <path d="M24 18 C 21 24 19 27 19 31 a 5 5 0 0 0 10 0 C 29 27 27 24 24 18 Z" fill="#f7c548" stroke="none" opacity=".8"/>
-          </svg>
-        </div>
-        <div class="badge">The Burner</div>
-        <h4>Black Rock regular.</h4>
-        <p>Goes to the playa for the part of life that doesn't fit on a roadmap. Returns with a slightly better sense of what "user delight" actually means.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="container">
-    <div class="grid">
+<!-- ===== EDUCATION ===== -->
+<section id="education">
+  <div class="wrap">
+    <div class="section-label">Education &amp; Credentials</div>
+    <div class="edu-grid reveal">
       <div>
-        <div class="sig">
-          Crafting AI-powered products<br>
-          people <span class="ember">love</span> and <span class="ember">trust</span>.
+        <div class="edu-list">
+          <div class="edu-item">
+            <div class="edu-school">University of Technology Sydney</div>
+            <div class="edu-degree">B.Sc. Information Technology</div>
+            <div class="edu-years">2002 – 2007</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-school">University of Texas at Austin</div>
+            <div class="edu-degree">International Exchange Scholarship</div>
+            <div class="edu-years">Aug – Dec 2005</div>
+          </div>
+        </div>
+        <div class="patent-card" style="margin-top:28px;">
+          <div class="patent-label">US Patent · 2013</div>
+          <div class="patent-title">Rich recording and playback of program execution</div>
+          <div class="patent-meta">Amazon · Issued 2013</div>
         </div>
       </div>
-      <div class="col">
-        <h5>Find Adam</h5>
-        <a href="https://www.linkedin.com/in/adamlewkovitz/" target="_blank" rel="noopener">LinkedIn →</a>
-        <a href="https://adamlewkovitz.com" target="_blank" rel="noopener">adamlewkovitz.com →</a>
-        <a href="https://x.com/adamlewkovitz" target="_blank" rel="noopener">X (@adamlewkovitz) →</a>
-        <a href="https://www.instagram.com/lewko/" target="_blank" rel="noopener">Instagram (@lewko) →</a>
-      </div>
-      <div class="col">
-        <h5>Receipts</h5>
-        <span style="display:block;color:var(--text-dim);font-size:14px;padding:6px 0;">PMP · CSPO · ScrumMaster</span>
-        <span style="display:block;color:var(--text-dim);font-size:14px;padding:6px 0;">B.S., University of Technology, Sydney</span>
-        <span style="display:block;color:var(--text-dim);font-size:14px;padding:6px 0;">US Patent (2013) — program execution recording</span>
+      <div>
+        <div class="edu-item" style="margin-bottom:20px;">
+          <div class="edu-school">Certifications</div>
+        </div>
+        <div class="cert-list">
+          <div class="cert-item">PMP — Project Management Professional</div>
+          <div class="cert-item">Certified Scrum Product Owner (CSPO)</div>
+          <div class="cert-item">Certified Scrum Master (CSM)</div>
+        </div>
       </div>
     </div>
-    <div class="micro">
-      <span>adam.makeacompany.ai · a small page by a friend</span>
-      <span>Made with care in NYC ↔ NYC</span>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="inner">
+    <div>
+      <div class="footer-name">Adam Lewkovitz</div>
+      <div class="footer-title">Senior AI Product Leader · New York</div>
+      <div class="footer-tagline">Building AI products people love and trust.<br>Open to senior IC leadership at AI-native companies.</div>
     </div>
+    <div class="footer-col">
+      <h5>Connect</h5>
+      <a href="https://www.linkedin.com/in/adamlewkovitz/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://x.com/adamlewkovitz" target="_blank" rel="noopener">X / Twitter</a>
+      <a href="https://www.instagram.com/lewko/" target="_blank" rel="noopener">Instagram</a>
+      <a href="mailto:adam@adamlewkovitz.com">Email</a>
+    </div>
+    <div class="footer-col">
+      <h5>Elsewhere</h5>
+      <a href="https://adamlewkovitz.com" target="_blank" rel="noopener">adamlewkovitz.com</a>
+      <a href="https://adam.makeacompany.ai" target="_blank" rel="noopener">adam.makeacompany.ai</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>adamlewkovitz.com</span>
+    <span>New York, NY</span>
   </div>
 </footer>
 
 <script>
 // ===== Reveal on scroll =====
-const io = new IntersectionObserver((entries) => {
+const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('in');
-      io.unobserve(e.target);
-    }
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
   });
-}, { threshold: 0.12 });
+}, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
 // ===== Count-ups =====
-function animateCount(el) {
-  const to = parseInt(el.dataset.to, 10);
-  const from = parseInt(el.dataset.from || 0, 10);
-  const dur = 1400;
+function animCount(el) {
+  const raw = el.dataset.to.replace(/,/g,'');
+  const to = parseInt(raw, 10);
+  const dur = 1200;
   const start = performance.now();
-  function tick(now) {
+  (function tick(now) {
     const t = Math.min(1, (now - start) / dur);
-    const eased = 1 - Math.pow(1 - t, 3);
-    const val = Math.round(from + (to - from) * eased);
-    el.textContent = val.toLocaleString();
+    const v = Math.round(to * (1 - Math.pow(1 - t, 3)));
+    el.textContent = v.toLocaleString();
     if (t < 1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
+    else el.textContent = to.toLocaleString();
+  })(start);
 }
-const countObs = new IntersectionObserver((entries) => {
+const cObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      animateCount(e.target);
-      countObs.unobserve(e.target);
-    }
+    if (e.isIntersecting) { animCount(e.target); cObs.unobserve(e.target); }
   });
-}, { threshold: 0.4 });
-document.querySelectorAll('.countup').forEach(el => countObs.observe(el));
-
-// ===== SVG attribute animation helper =====
-function animateAttr(el, attr, from, to, dur=1400) {
-  const start = performance.now();
-  function tick(now){
-    const t = Math.min(1,(now-start)/dur);
-    const eased = 1 - Math.pow(1-t,3);
-    el.setAttribute(attr, from + (to-from)*eased);
-    if (t<1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-}
-const growObs = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      const el = e.target;
-      const final = parseFloat(el.dataset.final);
-      animateAttr(el, 'width', 0, final, 1400);
-      growObs.unobserve(el);
-    }
-  });
-},{threshold:0.3});
-document.querySelectorAll('.grow-w').forEach(el => growObs.observe(el));
-
-// ===== Factuality dial =====
-const dialObs = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      const arc = document.getElementById('dial-arc');
-      const num = document.getElementById('dial-num');
-      const circumference = 2 * Math.PI * 92; // ~578
-      const target = circumference * 0.15; // 15%
-      const dur = 1600;
-      const start = performance.now();
-      function tick(now){
-        const t = Math.min(1,(now-start)/dur);
-        const eased = 1 - Math.pow(1-t,3);
-        const len = target * eased;
-        arc.setAttribute('stroke-dasharray', `${len} ${circumference}`);
-        num.textContent = Math.round(15 * eased) || 0;
-        if(t<1) requestAnimationFrame(tick);
-        else num.textContent = '15';
-      }
-      requestAnimationFrame(tick);
-      dialObs.unobserve(e.target);
-    }
-  });
-},{threshold:0.4});
-const dialEl = document.getElementById('dial');
-if (dialEl) dialObs.observe(dialEl);
-
-// ===== Timeline =====
-const roles = [
-  // start, end, label, sub, sector
-  {s: 2006, e: 2008, label: "BearingPoint", sub: "Consultant", sector: "consult"},
-  {s: 2008, e: 2010, label: "Aetna · ActiveHealth", sub: "Sr Analyst", sector: "consult"},
-  {s: 2010, e: 2011, label: "Razorfish", sub: "Strategy", sector: "consult"},
-  {s: 2011, e: 2012, label: "Merrill Lynch", sub: "Mobile PM", sector: "finance"},
-  {s: 2012, e: 2013, label: "Amazon · Appstore", sub: "Sr Product Manager", sector: "bigtech"},
-  {s: 2013, e: 2016, label: "KPMG US", sub: "Manager, Digital & Mobile", sector: "consult"},
-  {s: 2018, e: 2022, label: "Publicis Sapient", sub: "Assoc Dir, Product · Marriott · Walgreens · Albertsons · U.S. Bank", sector: "retail"},
-  {s: 2022, e: 2026.4, label: "Google · AI Infrastructure", sub: "Sr PM · Gemini & AI Search factuality", sector: "ai"},
-];
-const sectorColor = {
-  bigtech: '#4d9de0',
-  consult: '#5fb37e',
-  finance: '#d65d9b',
-  retail: '#f7c548',
-  ai: '#ff6b35',
-};
-
-function renderTimeline() {
-  const svg = document.getElementById('timeline');
-  if (!svg) return;
-  const W = 1100, H = 360;
-  const padL = 16, padR = 16, padT = 24, padB = 40;
-  const innerW = W - padL - padR;
-  const innerH = H - padT - padB;
-  const minYear = 2006, maxYear = 2026.5;
-  const xFor = y => padL + ((y - minYear) / (maxYear - minYear)) * innerW;
-
-  // gridlines + axis labels (every 2 years)
-  const grid = svg.querySelector('.gridlines');
-  const axis = svg.querySelector('.axis-group');
-  grid.innerHTML = '';
-  axis.innerHTML = '';
-  for (let y = 2006; y <= 2026; y += 2) {
-    const x = xFor(y);
-    grid.insertAdjacentHTML('beforeend', `<line class="gridline" x1="${x}" y1="${padT}" x2="${x}" y2="${H - padB}" />`);
-    axis.insertAdjacentHTML('beforeend', `<text class="axis" x="${x}" y="${H - padB + 18}" text-anchor="middle">${y}</text>`);
-  }
-  // baseline
-  axis.insertAdjacentHTML('beforeend', `<line class="axis-line" x1="${padL}" y1="${H - padB}" x2="${W - padR}" y2="${H - padB}" />`);
-
-  // bars
-  const bars = svg.querySelector('.bars');
-  bars.innerHTML = '';
-  const rowH = 34;
-  const rowGap = 4;
-  const startY = padT + 8;
-  roles.forEach((r, i) => {
-    const x = xFor(r.s);
-    const w = Math.max(8, xFor(r.e) - xFor(r.s));
-    const y = startY + i * (rowH + rowGap);
-    const color = sectorColor[r.sector];
-    bars.insertAdjacentHTML('beforeend', `
-      <g class="role-bar" opacity="0.85">
-        <rect x="${x}" y="${y}" rx="6" ry="6" width="0" height="${rowH}" fill="${color}" opacity="0.18" data-final-w="${w}" class="tl-bar-bg"/>
-        <rect x="${x}" y="${y}" rx="6" ry="6" width="0" height="${rowH}" fill="${color}" data-final-w="${w}" class="tl-bar" opacity="0.7"/>
-        <text class="role-label" x="${x + 12}" y="${y + 15}">${r.label}</text>
-        <text class="role-sub" x="${x + 12}" y="${y + 28}">${r.sub}</text>
-      </g>
-    `);
-  });
-
-  // Animate bars when scrolled into view
-  const tlObs = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        svg.querySelectorAll('.tl-bar, .tl-bar-bg').forEach((el, idx)=>{
-          const final = parseFloat(el.dataset.finalW);
-          setTimeout(()=> animateAttr(el, 'width', 0, final, 900), idx * 80);
-        });
-        tlObs.unobserve(e.target);
-      }
-    });
-  },{threshold:0.2});
-  tlObs.observe(svg);
-}
-renderTimeline();
+}, { threshold: 0.5 });
+document.querySelectorAll('.countup').forEach(el => cObs.observe(el));
 </script>
 </body>
 </html>
