@@ -8,7 +8,34 @@
 <meta property="og:title" content="Adam Lewkovitz — Senior AI Product Leader" />
 <meta property="og:description" content="Building the platform that grounds generative AI responses across Gemini and AI Search. 20+ years at scale. NYC." />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://adamlewkovitz.com" />
+<meta property="og:url" content="https://adam.makeacompany.ai" />
+<link rel="canonical" href="https://adam.makeacompany.ai" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-29N1GMQ3NE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-29N1GMQ3NE');
+
+  // Synthetic health event: one non-interaction ping per browser session.
+  try {
+    var gaHealthKey = 'ga_health_ping_sent';
+    if (!sessionStorage.getItem(gaHealthKey)) {
+      var gaDebug = window.location.search.indexOf('ga_debug=1') !== -1;
+      gtag('event', 'ga_health_ping', {
+        event_category: 'observability',
+        event_label: 'frontend_boot',
+        non_interaction: true,
+        debug_mode: gaDebug
+      });
+      sessionStorage.setItem(gaHealthKey, '1');
+    }
+  } catch (err) {
+    // Ignore storage restrictions in private/locked-down browser contexts.
+  }
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
